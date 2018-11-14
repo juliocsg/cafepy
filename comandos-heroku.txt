@@ -1,0 +1,3 @@
+heroku config
+heroku config:set nombre="valor"
+heroku config:unset nombre="valor"

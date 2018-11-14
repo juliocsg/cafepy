@@ -6,12 +6,19 @@ const _ = require('underscore');
 
 const Usuario = require('../models/usuario');
 
+const { verificarToken, verificarAdmin_Role } = require('../middleware/autenticacion');
+
 const app = express();
 
-app.get('/usuario', function(req, res) {
+app.get('/usuario', verificarToken, (req, res) => {
     //res.json('get Usuario LOCAL!!!');
     //{estado: true}
+    /*return res.json({
+        usuario: req.usuario,
+        nombre: req.usuario.nombre,
+        email: req.usuario.email
 
+    });*/
     let desde = req.query.desde || 0;
     desde = Number(desde);
     let cambiarEstado = {
@@ -36,10 +43,9 @@ app.get('/usuario', function(req, res) {
                     cuantos: conteo
                 });
             });
-        })
+        });
 });
-app.post('/usuario', function(req, res) {
-
+app.post('/usuario', [verificarToken, verificarAdmin_Role], (req, res) => {
     let body = req.body;
     let usuario = new Usuario({
         nombre: body.nombre,
@@ -63,8 +69,7 @@ app.post('/usuario', function(req, res) {
     });
 });
 //Actualiación
-app.put('/usuario/:id', function(req, res) {
-
+app.put('/usuario/:id', [verificarToken, verificarAdmin_Role], (req, res) => {
     let id = req.params.id;
     let body = _.pick(req.body, ["nombre", "email", "img", "role", "estado"]);
 
@@ -81,7 +86,7 @@ app.put('/usuario/:id', function(req, res) {
         });
     });
 });
-app.delete('/usuario/:id', function(req, res) {
+app.delete('/usuario/:id', [verificarToken, verificarAdmin_Role], function(req, res) {
     let id = req.params.id;
 
     //Usuario.findByIdAndRemove(id, (err, usuarioBorrado) => {
