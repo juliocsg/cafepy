@@ -1,0 +1,395 @@
+{
+	"id": "1af5dd34-9515-448e-933d-1ceeb90e5a50",
+	"name": "restserver",
+	"description": "",
+	"auth": null,
+	"events": null,
+	"variables": [],
+	"order": [
+		"e6cc054a-a13c-4f62-83df-b397d600d4bb",
+		"a1545d18-91e9-4869-84ff-155f5a1c8877",
+		"09e55bec-2a2a-4e5d-8af4-628171cee29b",
+		"51b62496-36aa-4eed-8080-7e6d230e74bf",
+		"422d9332-9c42-4fab-8b57-d8d7a2a703f9",
+		"b63108a0-1ab0-4cb5-9a6a-8e208ca0d8f0",
+		"a6b5cc7a-9d3d-48f9-8fb1-b240d28e5b64"
+	],
+	"folders_order": [
+		"67d407cc-df4d-49e5-b787-b15343ee00cf",
+		"5e3acbe1-5a96-4449-8615-4769848cb5f3"
+	],
+	"folders": [
+		{
+			"id": "67d407cc-df4d-49e5-b787-b15343ee00cf",
+			"name": "JWT node",
+			"description": "",
+			"auth": null,
+			"events": null,
+			"collection": "1af5dd34-9515-448e-933d-1ceeb90e5a50",
+			"folder": null,
+			"order": [
+				"e5a9ab25-3fc3-4fbf-b834-3adc363fade4"
+			],
+			"folders_order": []
+		},
+		{
+			"id": "5e3acbe1-5a96-4449-8615-4769848cb5f3",
+			"name": "Login google",
+			"description": null,
+			"auth": null,
+			"events": null,
+			"collection": "1af5dd34-9515-448e-933d-1ceeb90e5a50",
+			"folder": null,
+			"order": [
+				"ad20a704-142c-402a-9e8d-5ca62320d15e"
+			],
+			"folders_order": []
+		}
+	],
+	"requests": [
+		{
+			"id": "09e55bec-2a2a-4e5d-8af4-628171cee29b",
+			"name": "Crear usuario",
+			"url": "{{url}}/usuario/5be044c2ca1490273a13be9b",
+			"description": "Creación de usuarios con operaciones con post, put, entreo otros",
+			"data": [
+				{
+					"key": "nombre",
+					"value": "test17",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "email",
+					"value": "test17@gmail.com\n",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "123456",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"headerData": [
+				{
+					"key": "token",
+					"value": "{{token1}}",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"method": "PUT",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": null,
+			"folder": null,
+			"headers": "token: {{token1}}\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "422d9332-9c42-4fab-8b57-d8d7a2a703f9",
+			"name": "Usuario: get usuario",
+			"url": "{{url}}/usuario?desde=1",
+			"description": "obtener valores con get y ademàs filtrar por un limite de registros y la cantidad que puede tener cada registro",
+			"data": null,
+			"dataMode": null,
+			"headerData": [],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [
+				{
+					"key": "desde",
+					"value": "1",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"auth": null,
+			"events": null,
+			"folder": null,
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "51b62496-36aa-4eed-8080-7e6d230e74bf",
+			"name": "Login Usuario: POST",
+			"url": "{{url}}/login",
+			"description": "Creación de usuarios con operaciones con post, put, entreo otros",
+			"data": [
+				{
+					"key": "email",
+					"value": "test1@gmail.com",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "123456",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/x-www-form-urlencoded",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"method": "POST",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a97cbea8-0729-4492-b5cd-59f73a833f2e",
+						"exec": [
+							"let resp = pm.response.json();",
+							"if (resp.ok){",
+							"    let token = resp.token;",
+							"    pm.environment.set(\"token2\", token);",
+							"}else{",
+							"    console.log(\"No se actualizó el token\");",
+							"}",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"folder": null,
+			"headers": "Content-Type: application/x-www-form-urlencoded\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "a1545d18-91e9-4869-84ff-155f5a1c8877",
+			"name": "Crear usuario",
+			"url": "{{url}}/usuario?limite=10",
+			"description": "operaciones con post, put, entreo otros",
+			"data": null,
+			"dataMode": null,
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/x-www-form-urlencoded",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "token",
+					"value": "{{token1}}",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [
+				{
+					"key": "limite",
+					"value": "10",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"auth": null,
+			"events": null,
+			"folder": null,
+			"headers": "Content-Type: application/x-www-form-urlencoded\ntoken: {{token1}}\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "a6b5cc7a-9d3d-48f9-8fb1-b240d28e5b64",
+			"name": "Crear usuario",
+			"url": "{{url}}/usuario",
+			"description": "Crea usuario con el método POST",
+			"data": [
+				{
+					"key": "nombre",
+					"value": "Test1",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "email",
+					"value": "test1@gmail.com",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "123456",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"headerData": [
+				{
+					"key": "token",
+					"value": "{{token1}}",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Content-Type",
+					"name": "Content-Type",
+					"value": "application/x-www-form-urlencoded",
+					"description": "",
+					"type": "text"
+				}
+			],
+			"method": "POST",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": null,
+			"folder": null,
+			"headers": "token: {{token1}}\nContent-Type: application/x-www-form-urlencoded\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "ad20a704-142c-402a-9e8d-5ca62320d15e",
+			"name": "Login Google",
+			"url": "{{url}}/google",
+			"description": "Autenticación por Google",
+			"data": [
+				{
+					"key": "idtoken",
+					"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImQxZTg2OWU3YmY0MGRkYzNkM2RlMDgwNDI1OThiYTgzNTA5NzBmMGEiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiNTI5MzI0MjE0MjE5LXJoZ29yMGMxa3R0MzlsOHJzN3E5dWNsZzVwMjFzdnZvLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiNTI5MzI0MjE0MjE5LXJoZ29yMGMxa3R0MzlsOHJzN3E5dWNsZzVwMjFzdnZvLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTE2MDEwOTkzOTIyNDMxODI4MjA0IiwiZW1haWwiOiJqY2VzYXJzYXVjZWRvMTk5M0BnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiYXRfaGFzaCI6Ik81V1JJSTNQVXhROXNlU0tuYmw1NFEiLCJuYW1lIjoiSnVsaW8gQ8Opc2FyIFNhdWNlZG8gR29uesOhbGV6IiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS8tV0E2VUZXUU00WmcvQUFBQUFBQUFBQUkvQUFBQUFBQUFBQnMvVTdWQWo2aHRSYjgvczk2LWMvcGhvdG8uanBnIiwiZ2l2ZW5fbmFtZSI6Ikp1bGlvIEPDqXNhciIsImZhbWlseV9uYW1lIjoiU2F1Y2VkbyBHb256w6FsZXoiLCJsb2NhbGUiOiJlcyIsImlhdCI6MTU0MjIyMzc2MCwiZXhwIjoxNTQyMjI3MzYwLCJqdGkiOiIxY2YwYTQzNzZiOTM5ZDNlNjZhOTRlNjZiMWIyMzE0YTkxMzVhYjliIn0.Bk0gvfBvzzkEWjtF435Y12qVrfWq14MMgTyqx99fYUxBPbSjr7R-2EyP2wnBklUcYeOrndrMbovjkUm6wmwMwtmDAveeBB0H-Q0NBIyw7qbRtGHBmzorEwc2r3wVClpqY2PXNMxEl4uJlGg9w_9YrKvJVOJokhsuLlP9Jfr5a_zOtfiVzTFgKR8dGy8cSHqOcsEdeLCssSFWyluDBl0LDwjITOL5W2towD5t7lq_1VWpXW147Wy_T3uwRpjTCO8aWJyKurADBzDPzq2UkYZMDPT_fahU4r6f551u96UUrjF9MGiaTezKAlXye1a2emx3huoSu9QH9Dh_IKO8uGaV_g",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"name": "Content-Type",
+					"value": "application/x-www-form-urlencoded",
+					"description": "",
+					"type": "text"
+				}
+			],
+			"method": "POST",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": null,
+			"folder": "5e3acbe1-5a96-4449-8615-4769848cb5f3",
+			"headers": "Content-Type: application/x-www-form-urlencoded\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "b63108a0-1ab0-4cb5-9a6a-8e208ca0d8f0",
+			"name": "Usuario: delete usuario",
+			"url": "{{url}}/usuario/5be0891c2ae5ef134c70bdcd",
+			"description": "Elimina registros del usuario",
+			"data": [],
+			"dataMode": "params",
+			"headerData": [
+				{
+					"key": "token",
+					"value": "{{token1}}",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"method": "DELETE",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": null,
+			"folder": null,
+			"headers": "token: {{token1}}\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "e5a9ab25-3fc3-4fbf-b834-3adc363fade4",
+			"name": "Login: login nnormal",
+			"url": "{{url}}/login",
+			"description": "jwt login",
+			"data": null,
+			"dataMode": null,
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/x-www-form-urlencoded",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": null,
+			"folder": "67d407cc-df4d-49e5-b787-b15343ee00cf",
+			"headers": "Content-Type: application/x-www-form-urlencoded\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "e6cc054a-a13c-4f62-83df-b397d600d4bb",
+			"name": "Crear usuario",
+			"url": "{{url}}/usuario",
+			"description": "operaciones con post, put, entreo otros",
+			"data": [
+				{
+					"key": "nombre",
+					"value": "Test 17",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "123456",
+					"description": ""
+				},
+				{
+					"key": "email",
+					"value": "test17@gmail.com",
+					"description": ""
+				}
+			],
+			"dataMode": "urlencoded",
+			"headerData": [
+				{
+					"key": "token",
+					"value": "{{token}}",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"method": "PUT",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": null,
+			"folder": null,
+			"headers": "token: {{token}}\n",
+			"pathVariables": {}
+		}
+	]
+}
